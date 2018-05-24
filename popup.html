@@ -1,0 +1,135 @@
+<!-- Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file. -->
+<html>
+  <head>
+    <title>Google Translate</title>
+    <style>
+      body {
+        text-align: center;
+      }
+
+      #hydrateImage {
+        width: 100px;
+        margin: 5px;
+      }
+
+      button {
+        margin: 5px;
+        outline: none;
+      }
+
+      button:hover {
+        outline: #80DEEA dotted thick;
+      }
+
+      #radio_text {
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        color: rgb(33, 66, CC);
+      }
+      .translateSwitch {
+        position: relative;
+        float: left;
+        width: 128px;
+        margin: 0;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select: none;
+      }
+
+      .translateSwitch-checkbox {
+        display: none;
+      }
+
+      .translateSwitch-label {
+        display: block;
+        overflow: hidden;
+        cursor: pointer;
+        border: 2px solid #999999;
+        border-radius: 20px;
+      }
+
+      .translateSwitch-inner {
+        display: block;
+        width: 250%;
+        margin-left: -150%;
+        transition: margin 0.3s ease-in 0s;
+      }
+
+      .translateSwitch-inner::before, .translateSwitch-inner::after {
+        display: block;
+        float: right;
+        width: 50%;
+        height: 30px;
+        padding: 0;
+        line-height: 30px;
+        font-size: 14px;
+        color: white;
+        font-family:   Trebuchet, Arial, sans-serif;
+        font-weight: bold;
+        box-sizing: border-box;
+      }
+
+      .translateSwitch-inner::after {
+        content: attr(data-on);
+        padding-left: 10px;
+        background-color: #00e500;
+        color: #FFFFFF;
+      }
+
+      .translateSwitch-inner::before {
+        content: attr(data-off);
+        padding-right: 10px;
+        background-color: #EEEEEE;
+        color: #999999;
+        text-align: right;
+      }
+
+      .translateSwitch-switch {
+        position: absolute;
+        display: block;
+        width: 22px;
+        height: 22px;
+        margin: 4px;
+        background: #FFFFFF;
+        top: 0;
+        bottom: 0;
+        right: 94px;
+        border: 2px solid #999999;
+        border-radius: 20px;
+        transition: all 0.3s ease-in 0s;
+      }
+
+      .translateSwitch-checkbox:checked + .translateSwitch-label .translateSwitch-inner {
+        margin-left: 0;
+      }
+
+      .translateSwitch-checkbox:checked + .translateSwitch-label .translateSwitch-switch {
+        right: 0px;
+      }
+    </style>
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+  </head>
+  <body>
+      <img src='./google_trans.png' id='googleTransImage'>
+      <!-- An Alarm delay of less than the minimum 1 minute will fire
+      in approximately 1 minute incriments if released -->
+      <!--button id='Chinese' value='zh-CN'>To Chinese</button>
+      <button id='English' value='en'>To English</button-->
+      <div class="translateSwitch">
+            <input class="translateSwitch-checkbox" id="transSwitch" type="checkbox">
+            <label class="translateSwitch-label" for="transSwitch">
+                <span class="translateSwitch-inner" data-on="ON" data-off="OFF"></span>
+                <span class="translateSwitch-switch"></span>
+            </label>
+      </div>
+   <!-- link to non-persistent background script -->
+   <script src="popup.js"></script>
+  </body>
+</html>

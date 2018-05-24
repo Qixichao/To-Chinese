@@ -1,0 +1,32 @@
+{
+  "name": "To Chinese",
+  "description": "Translate highlight text using google translate website",
+  "version": "1.0",
+  "manifest_version": 2,
+  "permissions": ["storage"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*", "file:///*/*"],
+      "js": ["google_trans_content_script.js"]
+    }
+  ],
+  "permissions": [
+    "storage",
+    "https://translate.google.com/*"
+  ],
+  "browser_action": {
+    "default_title": "Google Translate",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "google_trans_16.png",
+    "32": "google_trans_32.png",
+    "48": "google_trans_48.png",
+    "128": "google_trans_128.png"
+  },
+  "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src https://translate.google.com; img-src https://maps.googleapis.com"
+}
